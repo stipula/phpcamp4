@@ -1,11 +1,19 @@
 <?php
+require_once 'init.php';
+
 $host = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
 $dbname = 'phpcamp';
 
 $db = new mysqli($host, $dbUser, $dbPass, $dbname);
-$login = $_GET['login'];
+
+if (empty($_SESSION['login'])) {
+    echo 'Brak uzytkownika';
+    die;
+}
+
+$login = $_SESSION['login'];
 
 $query = 'SELECT * FROM users WHERE login = "' . $login . '"';
 

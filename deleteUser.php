@@ -1,6 +1,6 @@
 <?php
-require_once 'init.php';
 
+require_once 'init.php';
 if (empty($_SESSION['login'])) {
     echo 'Brak uzytkownika';
     die;
@@ -13,11 +13,12 @@ $dbname = 'phpcamp';
 
 $db = new mysqli($host, $dbUser, $dbPass, $dbname);
 
-$query = 'UPDATE users SET email = "' . $_POST['email'] . '" WHERE login = "' . $_POST['login'] . '"';
+$query = 'DELETE FROM users  WHERE login = "' . $_SESSION['login'] . '"';
 $result = $db->query($query);
 if ($result) {
 
-    echo 'Dane uzytkownika zmienione';
+    echo 'usunieto uzytkownika o loginie ' . $_SESSION['login'];
+    unset($_SESSION['login']);
 } else {
     echo $db->error;
 

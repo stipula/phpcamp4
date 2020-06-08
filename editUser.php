@@ -8,7 +8,7 @@ if (empty($_SESSION['login'])) {
 
 $host = 'localhost';
 $dbUser = 'root';
-$dbPass = '';
+$dbPass = 'root';
 $dbname = 'phpcamp';
 
 $db = new mysqli($host, $dbUser, $dbPass, $dbname);

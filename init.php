@@ -1,4 +1,7 @@
 <?php
+require_once 'Database.class.php';
+require_once 'UserDAO.class.php';
+require_once 'User.class.php';
 
 // inicjowanie sesji
 if (isset($_COOKIE['moja_sesja'])) {

@@ -1,25 +1,17 @@
 <?php
+require_once 'init.php';
+print '<pre>';
 
-$host = 'localhost';
-$dbUser = 'root';
-$dbPass = '';
-$dbname = 'phpcamp';
+$myDb = new Database();
+$DAO = new UserDAO($myDb);
 
-$db = new mysqli($host, $dbUser, $dbPass, $dbname);
+$users = $DAO->getAll();
 
-var_dump($db->connect_error);
-
-
-$query = 'SELECT * FROM `users`';
-
-$result = $db->query($query);
-
-
-if ($result) {
-    var_dump($result->fetch_all());
+if ($users) {
+    var_dump($users);
 } else {
-    echo ' wystąipł blad zapytania ';
-    var_dump($db->error_list);
+    if ($myDb->getError()) {
+        echo ' wystąipł blad zapytania ';
+        var_dump($myDb->getErrorsList());
+    }
 }
-
-$db->close();
